@@ -1,0 +1,49 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+
+.main .first, .second, .third{
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+    border: 1px solid green;
+    width: 200px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    border-radius: 4px;
+    align-items: center;
+    margin-left: 550px;
+    cursor: pointer;
+   
+}
+
+.container .main span {
+
+    font-weight: 500;
+    
+}
+
+.container .main .first:hover {
+
+   background-color: green;
+   transition: 0.9s;
+    
+}
+
+.container .main .second:hover {
+
+    background-color: green;
+    transition: 0.9s;
+     
+}
+
+ .container .main .third:hover {
+
+    background-color: green;
+    transition: 0.9s;
+     
+ }
