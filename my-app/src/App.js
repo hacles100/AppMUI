@@ -5,8 +5,8 @@ import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import { useState } from 'react';
-import Contact from './screens/Contact';
-import Dial from './screens/Dial';
+import Contact from './screens/Contact/Contact';
+import Dial from './screens/Dial/Dial';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState(0);
