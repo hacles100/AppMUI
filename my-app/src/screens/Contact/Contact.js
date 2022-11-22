@@ -1,9 +1,10 @@
-import { Avatar, Dialog, Divider, List, ListItem, ListItemAvatar, ListItemText } from "@mui/material"
+import { Avatar, Divider, List, ListItem, ListItemAvatar, ListItemText } from "@mui/material"
 import ImageIcon from '@mui/icons-material/Image';
 import axios from "axios";
 import { Box } from "@mui/system";
 import { useEffect, useState } from "react";
 import FormDialog from "../Dialog/Dialog";
+
 
 
 export default function Contact() {
@@ -30,11 +31,7 @@ export default function Contact() {
 
     return <>
 
-{/*  
-      <Fab color="primary" aria-label="add" >
-        <AddIcon/>
 
-      </Fab> */}
 
       <FormDialog/>
 
@@ -64,5 +61,6 @@ export default function Contact() {
             )}
 
         </List>
+      
     </>
 }
