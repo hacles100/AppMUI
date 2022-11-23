@@ -1,42 +1,36 @@
-import { Avatar, Divider, List, ListItem, ListItemAvatar, ListItemText } from "@mui/material"
 import ImageIcon from '@mui/icons-material/Image';
-import axios from "axios";
+import { Avatar, Divider, List, ListItem, ListItemAvatar, ListItemText } from "@mui/material";
 import { Box } from "@mui/system";
+import axios from "axios";
 import { useEffect, useState } from "react";
-import FormDialog from "../Dialog/Dialog";
-
-
+import AddContact from './AddContact';
 
 export default function Contact() {
 
     const [contacts, setContacts] = useState([]);
-    const dataUrl = 'http://localhost:3000/persons';
+    const pathUrl = 'http://localhost:3000/persons';
 
-    useEffect(()=>{
-        getData();
+    useEffect(() => {
+        getPersons();
     }, []);
 
-    function getData() {
-        axios.get(dataUrl)
-            .then(function (response) {
-                // handle success
+    function getPersons() {
+        axios.get(pathUrl)
+            .then(response => {
                 console.log(response);
                 setContacts(response.data);
             })
-            .catch(function (error) {
-                // handle error
+            .catch(error => {
                 console.log(error);
             });
     }
 
+    function onCreate(newPerson) {
+        contacts.push(newPerson);
+        setContacts([...contacts]);
+    }
+
     return <>
-
-
-
-      <FormDialog/>
-
-    
-
         <List
             sx={{
                 width: '100%',
@@ -46,7 +40,7 @@ export default function Contact() {
         >
             {contacts.map((contact, i) =>
                 <Box key={i}>
-                    <ListItem>
+                    <ListItem button>
                         <ListItemAvatar>
                             <Avatar>
                                 <ImageIcon />
@@ -61,6 +55,8 @@ export default function Contact() {
             )}
 
         </List>
-      
+        <AddContact
+            contactsState={[contacts, setContacts]}
+            onCreation={onCreate}/>
     </>
 }
