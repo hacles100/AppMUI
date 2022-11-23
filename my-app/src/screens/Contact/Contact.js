@@ -4,6 +4,7 @@ import { Box } from "@mui/system";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import AddContact from './AddContact';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 export default function Contact() {
 
@@ -30,6 +31,17 @@ export default function Contact() {
         setContacts([...contacts]);
     }
 
+
+    
+    function deleteUser(id, pos) {
+        axios.delete(`${pathUrl}/${id}`)
+        .then(res => console.log(res))
+         contacts.splice(pos, 1)
+         setContacts([...contacts])
+        .catch(error => console.log(error))
+    }
+
+
     return <>
         <List
             sx={{
@@ -46,17 +58,25 @@ export default function Contact() {
                                 <ImageIcon />
                             </Avatar>
                         </ListItemAvatar>
+                       
                         <ListItemText
                             primary={contact.name}
                             secondary={contact.phone} />
-                    </ListItem>
+                            <DeleteForeverIcon
+                             color="primary"
+                             onClick={() => deleteUser(contact.id, i)}
+                             />
+                        </ListItem>
+                  
                     <Divider variant="inset" component="li" />
                 </Box>
             )}
 
         </List>
+
+
         <AddContact
             contactsState={[contacts, setContacts]}
             onCreation={onCreate}/>
-    </>
+        </>
 }
