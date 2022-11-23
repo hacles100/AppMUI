@@ -5,10 +5,14 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import AddContact from './AddContact';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import EditIcon from '@mui/icons-material/Edit';
+
+
 
 export default function Contact() {
 
     const [contacts, setContacts] = useState([]);
+
     const pathUrl = 'http://localhost:3000/persons';
 
     useEffect(() => {
@@ -42,6 +46,20 @@ export default function Contact() {
     }
 
 
+    function updateUser(id, updateUser){
+
+        axios.put(`${pathUrl}/${id}`, updateUser)
+        .then(res => console.log(res))
+        contacts.push(updateUser);
+        setContacts([...contacts])
+        .catch(error => console.error(error))
+    }
+
+
+    
+
+
+
     return <>
         <List
             sx={{
@@ -62,6 +80,11 @@ export default function Contact() {
                         <ListItemText
                             primary={contact.name}
                             secondary={contact.phone} />
+                            <EditIcon
+                              color="primary"
+                              onClick={() => updateUser(contact.id, updateUser)}
+                            />
+                            
                             <DeleteForeverIcon
                              color="primary"
                              onClick={() => deleteUser(contact.id, i)}
